@@ -1,5 +1,6 @@
 export enum ExpenseEnum {
-  Deposite,
-  Void,
-  Withdraw,
+  Deposit = 'Deposit',
+  Undefined = 'Undefined',
+  Void = 'Void',
+  Withdraw = 'Withdraw',
 }

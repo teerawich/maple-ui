@@ -1,4 +1,4 @@
-export enum TaskEnum {
+export enum TopicStatusEnum {
   Closed = 'Close',
   Hold = 'Hold',
   Opened = 'Opened',

@@ -1,3 +1,5 @@
+<p>Activities</p>
+
 <p-table [value]="activities" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="header">
     <tr>
@@ -10,7 +12,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-activity>
     <tr>
-      <td>{{ activity.createdAt }}</td>
+      <td>{{ activity.createdAt | date : "d/M/yy HH:mm" }}</td>
       <td>{{ activity.module.name }}</td>
       <td>{{ activity.act }}</td>
       <td>{{ activity.user.name }}</td>

@@ -1,15 +1,19 @@
 <p-divider />
-<p>fw006</p>
+<p>FW006</p>
 <p-table [value]="topics" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="header">
     <tr>
       <th>id</th>
       <th>topic type</th>
       <th>status</th>
+      <th>priority</th>
+      <th>topic</th>
+      <th>due to</th>
       <th>create by</th>
       <th>last update</th>
       <th>last by</th>
-      <th>due to</th>
+      <th>update at</th>
+      <th>update</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-topic>
@@ -17,7 +21,7 @@
       <td>{{ topic.id }}</td>
       <td>{{ topic.topicType }}</td>
       <td>
-        @if(topic.status === "Hold") {<span style="color: gray"
+        @if(topic.status === "Hold") {<span style="color: orangered"
           >{{ topic.status }} </span
         >} @if(topic.status === "Closed") {<span style="color: grey"
           >{{ topic.status }} </span
@@ -25,10 +29,61 @@
           >{{ topic.status }} </span
         >}
       </td>
+      <td>
+        @if(topic.priority === "Critical" || topic.priority === "High") {
+        <span style="color: red; font-weight: bold">{{ topic.priority }}</span>
+        } @else {
+        <span style="color: green">{{ topic.priority }}</span>
+        }
+      </td>
+      <td>
+        @if(topic.priority === "Critical" || topic.priority === "High") {
+        <span style="font-weight: bold">{{ topic.description }}</span>
+        } @else {
+        <span>{{ topic.description }}</span>
+        }
+      </td>
+      <td>{{ topic.dueToAt | date : "d/M/yy HH:mm" }}</td>
       <td>{{ topic.createdBy.name || "-" }}</td>
       <td>{{ topic.tasks[0].description || "-" }}</td>
       <td>{{ topic.tasks[0].createdBy.name || "-" }}</td>
-      <td>{{ topic.dueToAt }}</td>
+      <td>{{ topic.updatedAt | date : "d/M/yy HH:mm" }}</td>
+      <td>
+        <p-button
+          type="button"
+          class="mr-2"
+          label="upadte tasks"
+          (onClick)="addTask(topic)"
+          icon="pi pi-pencil"
+        />
+      </td>
     </tr>
   </ng-template>
 </p-table>
+
+<p-sidebar [(visible)]="addTaskBar" position="right" styleClass="w-30rem;">
+  <ng-template pTemplate="header">
+    <span class="font-semibold text-xl">{{ selectedTopic?.topicType }}</span>
+  </ng-template>
+  <p>{{ selectedTopic?.description }}</p>
+  <textarea
+    rows="5"
+    cols="27"
+    pInputTextarea
+    [(ngModel)]="taskInformation"
+  ></textarea>
+  <p-divider />
+  <p-button type="button" class="mr-2" label="send" icon="pi pi-send" />
+  <p-divider />
+  <h3>history</h3>
+  <p-timeline [value]="selectedTopic?.tasks">
+    <ng-template ng-template pTemplate="opposite" let-task>
+      <small class="p-text-secondary">{{
+        task.createdAt | date : "d/M/yy HH:mm"
+      }}</small>
+    </ng-template>
+    <ng-template pTemplate="content" let-task>
+      {{ task.description }}
+    </ng-template>
+  </p-timeline>
+</p-sidebar>

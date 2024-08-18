@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Activity } from '../../interfaces/activity';
 import { ActivityEnum } from '../../enums/activity.enum';
 import { TableModule } from 'primeng/table';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-activity',
   standalone: true,
-  imports: [TableModule],
+  imports: [CommonModule, TableModule],
   templateUrl: './activity.component.html',
   styleUrl: './activity.component.scss',
 })

@@ -1,5 +1,6 @@
-import { TaskTypeEnum as TopicTypeEnum } from '../enums/task-type.enum';
-import { TaskEnum as TopicStatusEnum } from '../enums/task.enum';
+import { TopicTypeEnum as TopicTypeEnum } from '../enums/topic-type.enum';
+import { TopicStatusEnum as TopicStatusEnum } from '../enums/topic-status.enum';
+import { TopicPriorityEnum } from '../enums/topic-priority.enum';
 import { Task } from './task';
 import { User } from './user';
 
@@ -8,10 +9,12 @@ export interface Topic {
   closedBy?: User;
   createdAt: Date;
   createdBy: User;
+  description: string;
   dueToAt: Date;
   id: string;
+  priority?: TopicPriorityEnum;
   status: TopicStatusEnum;
   tasks?: Task[];
   topicType: TopicTypeEnum;
-  updateAt: Date;
+  updatedAt: Date;
 }
