@@ -1,0 +1,17 @@
+<p-table [value]="expenses" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>date</th>
+      <th>module</th>
+      <th>act</th>
+      <th>name</th>
+      <th>description</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-expenses>
+    <tr>
+      <td>{{ expenses.createdAt }}</td>
+      <td>{{ expenses.module.name }}</td>
+    </tr>
+  </ng-template>
+</p-table>

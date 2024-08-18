@@ -1,0 +1,20 @@
+<p-table [value]="accomplicies" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>phone</th>
+      <th>remark</th>
+      <th>isActive</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-accomplice>
+    <tr>
+      <td>{{ accomplice.id }}</td>
+      <td>{{ accomplice.name }}</td>
+      <td>{{ accomplice.phone }}</td>
+      <td>{{ accomplice.remark || "-" }}</td>
+      <td>{{ accomplice.isActive }}</td>
+    </tr>
+  </ng-template>
+</p-table>
