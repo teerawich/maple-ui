@@ -73,7 +73,17 @@
     [(ngModel)]="taskInformation"
   ></textarea>
   <p-divider />
-  <p-button type="button" class="mr-2" label="send" icon="pi pi-send" />
+  <div style="display: flex; justify-content: space-between">
+    <button
+      pButton
+      pRipple
+      label="send & close"
+      class="p-button-secondary"
+      icon="pi pi-send"
+    ></button>
+    <p-button type="button" class="mr-2" label="send" icon="pi pi-send" />
+  </div>
+
   <p-divider />
   <h3>history</h3>
   <p-timeline [value]="selectedTopic?.tasks">
